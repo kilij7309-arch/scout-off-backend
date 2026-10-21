@@ -10,6 +10,7 @@ import config from '../config';
 import { ErrorCode } from '../utils/errorCodes';
 import { revokeToken, isTokenRevoked } from '../services/tokenBlocklist';
 import { signJwt, verifyJwt } from '../utils/jwt';
+import { incAuthFailure } from '../middleware/metrics';
 
 // ─── Schema ────────────────────────────────────────────────────────────────────
 
@@ -150,6 +151,7 @@ try {
           attemptedWallet,
           reason: error.message,
         });
+        incAuthFailure('sep10_invalid');
         res.status(401).json({
           success: false,
           error: error.message,

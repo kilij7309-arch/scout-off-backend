@@ -652,6 +652,9 @@ const config = {
   /** Scheduled interval for IPFS pending pin reconciliation in milliseconds (default: 60s). */
   ipfsReconcileIntervalMs: parseNumericEnv('IPFS_RECONCILE_INTERVAL_MS', process.env.IPFS_RECONCILE_INTERVAL_MS, 60000, { min: 1000, integer: true }),
 
+  /** Interval for IPFS pending-pin retry attempts in milliseconds (default: 30s, min: 5s). */
+  ipfsPinRetryIntervalMs: parseNumericEnv('IPFS_PIN_RETRY_INTERVAL_MS', process.env.IPFS_PIN_RETRY_INTERVAL_MS, 30000, { min: 5000, integer: true }),
+
   /** Max attempts before expiring a stuck pending pin during reconciliation (default: 5). */
   ipfsReconcileMaxAttempts: parseNumericEnv('IPFS_RECONCILE_MAX_ATTEMPTS', process.env.IPFS_RECONCILE_MAX_ATTEMPTS, 5, { min: 1, integer: true }),
 
